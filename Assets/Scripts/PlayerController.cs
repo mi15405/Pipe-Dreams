@@ -35,25 +35,36 @@ public class PlayerController : MonoBehaviour {
 	private bool isRotating = true;
 
 	private bool rotatingRight;
-	private bool changeDirection;
+	private bool changeDirectionPressed;
+	private bool jumpPressed;
+
+	// TOUCH
+	[SerializeField]
+	private float minSwipeLength;
+	private Vector2 touchOrigin;
 
 	private void Update()
 	{
 		GetInput();
 
-		if (Input.GetKeyDown(KeyCode.S) && !isJumping)
-		{
-			targetPosition = transform.position;
-			targetPosition.x *= -1;
-			targetPosition.y *= -1;
-			isJumping = true;
-			isRotating = false;
-		}
+		if (jumpPressed && !isJumping)
+			StartJump();
 
 		if (isRotating)
 			Rotate();
-		else if (isJumping)
+
+		if (isJumping)
 			Jump();
+	}
+
+	private void StartJump()
+	{
+		targetPosition = transform.position;
+		targetPosition.x *= -1;
+		targetPosition.y *= -1;
+		isJumping = true;
+		isRotating = false;
+		jumpPressed = false;
 	}
 
 	private void Jump()
@@ -70,15 +81,50 @@ public class PlayerController : MonoBehaviour {
 
 	private void GetInput()
 	{
-		changeDirection = Input.GetKeyDown(KeyCode.Space);
+		// UNITY STANDALONE
+		//changeDirectionPressed = Input.GetKeyDown(KeyCode.Space);
+		//jumpPressed = Input.GetKeyDown(KeyCode.S);
+
+		if (Input.touchCount <= 0)
+			return;
+
+		/*
+		var touch = Input.GetTouch(0);
+
+		if (touch.tapCount == 1)
+		{
+			changeDirectionPressed = true;		
+		}
+		else if (touch.tapCount >= 2)
+		{
+			jumpPressed = true;
+		}
+		*/
+
+		var touch = Input.GetTouch(0);
+
+		if (touch.phase == TouchPhase.Began)
+		{
+			touchOrigin = touch.position;
+		}
+		else if (touch.phase == TouchPhase.Ended)
+		{
+			var swipeDirection = touch.position - touchOrigin;
+
+			if (swipeDirection.magnitude < minSwipeLength)
+				changeDirectionPressed = true;
+			else
+				jumpPressed = true;	
+		}
 	}
 
 	private void Rotate()
 	{
-		if (changeDirection)
+		if (changeDirectionPressed)
 		{
 			rotatingRight = !rotatingRight;
 			bonusRotateSpeed /= 2;
+			changeDirectionPressed = false;
 		}
 		else
 			bonusRotateSpeed += Time.deltaTime * rotateSpeedIncrease;

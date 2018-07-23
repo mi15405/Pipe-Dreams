@@ -5,10 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject spawnObstacle;
+	private GameObject[] spawnObstacle;
 
 	[SerializeField]
-	private GameObject spawnPickup;
+	private GameObject[] spawnPickup;
 
 	[SerializeField]
 	private float timeBetweenObstacleSpawns;
@@ -32,14 +32,19 @@ public class Spawner : MonoBehaviour {
 
 		if (timeToSpawnObstacle <= 0f)
 		{
-			SpawnItem(spawnObstacle);
+			SpawnItem(PickRandom(spawnObstacle));
 			timeToSpawnObstacle = timeBetweenObstacleSpawns;
 		}
 		else if (timeToSpawnPickup <= 0f)
 		{
-			SpawnItem(spawnPickup);
+			SpawnItem(PickRandom(spawnPickup));
 			timeToSpawnPickup = timeBetweenPickupSpawns;
 		}
+	}
+
+	private GameObject PickRandom(GameObject[] items)
+	{
+		return items[Random.Range(0, items.Length)];
 	}
 
 	private void SpawnItem(GameObject itemToSpawn)
