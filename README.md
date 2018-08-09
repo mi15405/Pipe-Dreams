@@ -10,3 +10,7 @@ broji pokupljene Spawner Pickupe
 * Vakum ball kad se pokupi radi sledece: ulazi se u stanje vakuma(centralna pozicija i pomera se swipeom u vakum prostoru) traje nekoliko sekundi(10-30), sto znaci da za to vreme ne mogu da te udare prepreke(obstacles) koje su na cevi. U vakum prostoru se pojavljuju specijalni Pickupi(koji donose vise poena) ali i prepreke koje nisu preteske.
 * U non-vakum modu(normalnom modu) umesto pickup i life spawnera, ponekad se pojavljuje i death spawner koji oduzima zivot.Takodje treba invincible spawner, u cijem modu u odredjenom vremenskom intervalu, player ne moze biti unisten preprekama(niti bilo kako).
 ------------------------------------------------------------
+* Igrac je zivotinja koja menja oblik u zavisonsti od trenutnog nivoa. Promenom oblika zivotinja se drugacije krece: 
+1. Jaje, kornjaca - ide levo-desno
+2. Zec - ide levo-desno i moze da skoci na swipe
+3. Ptica se krece gore-dole-levo-desno kroz vazduh, nevezano od cevi(okruzenja)
