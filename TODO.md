@@ -6,6 +6,7 @@ Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla!
 ### Karakter:
 * Zivot i gubitak zivota pri sudaru sa preprekom
 * Skok (igrac skace do centra cevi i pada nazad na tacku sa koje je skocio)
+* Neunistivi mod
 ### Pickup:
 * Dodatni zivot
 * Poeni, sakupljanje i brojanje
