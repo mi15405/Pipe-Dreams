@@ -1,29 +1,54 @@
 # TODO:
+Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla
 ---------------------------------------------------
-## Mechanics:
+## Mehanika:
+### Karakter:
+* Zivot i gubitak zivota pri sudaru sa preprekom
+* Skok (igrac skace do centra cevi i pada nazad na tacku sa koje je skocio)
+### Pickup:
+* Dodatni zivot
+* Poeni, sakupljanje i brojanje
 
 ---------------------------------------------------
-## Models:
-
+## UI:
+* Prikaz trenutnog broja zivota
+* Animacija gubitka zivota
+* Animacija dobitka zivota
+* Prikaz broja sakupljenih poena
+* Animacija sakupljanja poena
 ---------------------------------------------------
-## Animation:
-
+## Modeli:
+### Karakter:
+* Kornjaca 
+* Zec
+* Ptica
+### Pickup:
+* Dodatni zivot (hrana za zivotinju)
+### Prepreke:
+* Panj
+* Zbun
+* Kamen
+* Oboreno stablo
 ---------------------------------------------------
-## Music:
-
+## Animacija:
+* Kretanje karaktera (trcanje)
+---------------------------------------------------
+## Muzika:
+* Neka muzika za opustanje, uskladjena sa dizajnom nivoa (ovo uraditi kada budemo imali ceo nivo)
 ---------------------------------------------------
 ---------------------------------------------------
 # DONE:
 ---------------------------------------------------
-## Mechanics:
+## Mehanika:
+* Kruzno kretanje oko ivice cevi
+* Skok na drugu stranu cevi
+---------------------------------------------------
+## Modeli:
 
 ---------------------------------------------------
-## Models:
+## Animacija:
 
 ---------------------------------------------------
-## Animation:
-
----------------------------------------------------
-## Music:
+## Muzika:
 
 ---------------------------------------------------
