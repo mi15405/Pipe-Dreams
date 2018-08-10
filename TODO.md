@@ -1,5 +1,6 @@
 # TODO:
-Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla
+Kada uzmete da odradite neki zadatak, dodajte svoje ime na kraju zadatka kako biste obelezili da je u izradi, da ne bismo radili iste zadatke. 
+Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla!
 ---------------------------------------------------
 ## Mehanika:
 ### Karakter:
@@ -8,7 +9,10 @@ Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla
 ### Pickup:
 * Dodatni zivot
 * Poeni, sakupljanje i brojanje
-
+* Generisanje pickup-ova
+### Prepreke:
+* Oduzimaju zivot
+* Generisanje prepreka
 ---------------------------------------------------
 ## UI:
 * Prikaz trenutnog broja zivota
@@ -31,7 +35,11 @@ Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla
 * Oboreno stablo
 ---------------------------------------------------
 ## Animacija:
-* Kretanje karaktera (trcanje)
+* Kretanje zeca (trcanje)
+* Kretanje kornjace
+---------------------------------------------------
+## Osvetljenje:
+* Uskladjeno sa temom i dizajnom nivoa (ovo uraditi kada budemo imali ceo nivo)
 ---------------------------------------------------
 ## Muzika:
 * Neka muzika za opustanje, uskladjena sa dizajnom nivoa (ovo uraditi kada budemo imali ceo nivo)
