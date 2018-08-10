@@ -50,6 +50,7 @@ Odradjeni zadatak prebaciti u DONE sekciju na dnu fajla!
 ## Mehanika:
 * Kruzno kretanje oko ivice cevi
 * Skok na drugu stranu cevi
+* Generisanje krivudave cevi
 ---------------------------------------------------
 ## Modeli:
 
