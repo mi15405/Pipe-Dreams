@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour {
 
 	// FORWARD MOVEMENT
 	[SerializeField]
-	private float relativeSpeed;
-	public float RelativeSpeed {get {return relativeSpeed;} set {relativeSpeed = value;}}
+	private float relativeSpeed;//ako se koristi {get; set;} C# sam kreira hidden field 
+	public float RelativeSpeed {get {return relativeSpeed;} set {relativeSpeed = value;}}//{get; set;} isto radi samo shortcut
 
 	[SerializeField]
 	private GameObject explosionObject;
