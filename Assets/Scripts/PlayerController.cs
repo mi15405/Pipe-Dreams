@@ -81,25 +81,13 @@ public class PlayerController : MonoBehaviour {
 
 	private void GetInput()
 	{
-		// UNITY STANDALONE
-		//changeDirectionPressed = Input.GetKeyDown(KeyCode.Space);
-		//jumpPressed = Input.GetKeyDown(KeyCode.S);
+#if UNITY_STANDALONE
+		changeDirectionPressed = Input.GetKeyDown(KeyCode.Space);
+		jumpPressed = Input.GetKeyDown(KeyCode.S);
+#else
 
 		if (Input.touchCount <= 0)
 			return;
-
-		/*
-		var touch = Input.GetTouch(0);
-
-		if (touch.tapCount == 1)
-		{
-			changeDirectionPressed = true;		
-		}
-		else if (touch.tapCount >= 2)
-		{
-			jumpPressed = true;
-		}
-		*/
 
 		var touch = Input.GetTouch(0);
 
@@ -116,6 +104,7 @@ public class PlayerController : MonoBehaviour {
 			else
 				jumpPressed = true;	
 		}
+#endif
 	}
 
 	private void Rotate()
