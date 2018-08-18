@@ -5,50 +5,61 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
+	[SerializeField]
+	private float distanceFromCenter;
+
 	// ROTATION
 	[SerializeField]
 	private float rotateSpeed;
 
-	[SerializeField]
-	private float rotateSpeedIncrease;
-
-	[SerializeField]
-	private float maxBonusRotateSpeed;
-	private float bonusRotateSpeed;
-
-	// FORWARD MOVEMENT
-	[SerializeField]
-	private float relativeSpeed;//ako se koristi {get; set;} C# sam kreira hidden field 
-	public float RelativeSpeed {get {return relativeSpeed;} set {relativeSpeed = value;}}//{get; set;} isto radi samo shortcut
-
-	[SerializeField]
-	private GameObject explosionObject;
-
 	// JUMP
-	[SerializeField]
-	private Vector3 targetPosition;
+	private enum JumpType { Big, Mini};
+	private JumpType jumpType;
 
 	[SerializeField]
-	private float jumpSpeed;
+	private float jumpTime;     // Trajanje velikog skoka
 
-	private bool isJumping = false;
-	private bool isRotating = true;
+	[SerializeField]
+	private float miniJumpTime;  // Trajanje malog skoka
 
-	private bool rotatingRight;
+	private float jumpStartTime;  // Trenutak kada je skok zapocet
+	private Vector3 jumpOrigin;   // Tacka sa koje se skace
+	private Vector3 jumpTarget;   // Tacka na koju se skace
+
+	private bool isJumping = false;     // Skok je u toku
+	private bool isRotating = true;     // Rotacija je u toku
+
+	private bool rotatingRight;           
 	private bool changeDirectionPressed;
 	private bool jumpPressed;
+	private bool miniJumpPressed;
 
 	// TOUCH
 	[SerializeField]
 	private float minSwipeLength;
 	private Vector2 touchOrigin;
 
+	private void Start()
+	{
+		// Postavlja se rastojanje igraca od centra
+		transform.localPosition = new Vector3(0f, distanceFromCenter, 0f);
+	}
+
 	private void Update()
 	{
 		GetInput();
 
-		if (jumpPressed && !isJumping)
+		if (!isJumping && (jumpPressed || miniJumpPressed))
+		{
+			// Cuvamo vrstu skoka
+			if (jumpPressed)
+				jumpType = JumpType.Big;
+			else if (miniJumpPressed)
+				jumpType = JumpType.Mini;
+
+			// Zapocinjemo skok
 			StartJump();
+		}
 
 		if (isRotating)
 			Rotate();
@@ -57,33 +68,12 @@ public class PlayerController : MonoBehaviour {
 			Jump();
 	}
 
-	private void StartJump()
-	{
-		targetPosition = transform.position;
-		targetPosition.x *= -1;
-		targetPosition.y *= -1;
-		isJumping = true;
-		isRotating = false;
-		jumpPressed = false;
-	}
-
-	private void Jump()
-	{
-		transform.position = Vector3.Lerp(transform.position, targetPosition, jumpSpeed * Time.deltaTime);
-
-		if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-		{
-			transform.position = targetPosition;
-			isJumping = false;
-			isRotating = true;
-		}
-	}
-
 	private void GetInput()
 	{
 #if UNITY_STANDALONE
 		changeDirectionPressed = Input.GetKeyDown(KeyCode.Space);
 		jumpPressed = Input.GetKeyDown(KeyCode.S);
+		miniJumpPressed = Input.GetKeyDown(KeyCode.D);
 #else
 
 		if (Input.touchCount <= 0)
@@ -107,35 +97,108 @@ public class PlayerController : MonoBehaviour {
 #endif
 	}
 
+	private void StartJump()
+	{
+		// Vreme pocetka skoka
+		jumpStartTime = Time.time;
+
+		// Pozicija sa koje se skace
+		jumpOrigin = transform.position;
+
+		if (jumpPressed)
+		{
+			/* 
+			 * Odredjuje se pozicija tacke na koju se skace. Mnozenjem x i y koordinata sa -1 dobija
+			 * se tacka na suprotnoj strani kruga
+			 */
+			jumpTarget = jumpOrigin;
+			jumpTarget.x *= -1;
+			jumpTarget.y *= -1;
+		}
+		else
+		{
+			/* Ciljna tacka je centar kruga */
+			jumpTarget = Vector3.zero;
+		}
+
+		// Postavljamo fleg da je skok u toku
+		isJumping = true;
+
+		// Gasimo rotaciju prilikom skoka 
+		isRotating = false;
+	}
+	
+	private void Jump()
+	{
+		// Proteklo vreme od pocetka skoka
+		var elapsedTime = Time.time - jumpStartTime;
+
+		// Izvrsava se odredjeni skok
+		if (jumpType == JumpType.Big)
+			BigJump(elapsedTime);
+		else if (jumpType == JumpType.Mini)
+			MiniJump(elapsedTime);
+	}
+
+	private void BigJump(float elapsedTime)
+	{
+		// Procenat proteklog vremena
+		var jumpFraction = elapsedTime / jumpTime;
+
+		// Ukoliko je manje od 1 (100%) vrsi se interpolacija pozicije igraca
+		if (jumpFraction < 1f)
+			transform.position = Vector3.Lerp(jumpOrigin, jumpTarget, jumpFraction);
+		else
+		{
+			// Inace je skok zavrsen
+			transform.position = jumpTarget;
+			isJumping = false;
+			isRotating = true;
+		}
+	}
+
+	private void MiniJump(float elapsedTime)
+	{
+		// Procenat proteklog vremena
+		var jumpFraction = elapsedTime / miniJumpTime;
+
+		if (jumpFraction < 1f)
+		{
+			/* 
+			 * Interpoliramo sa sinusnom funkcijom, na intervalu [0, PI].
+			 * Dobijacemo vrednosti od 0 do 1, pa od 1 do 0, sto nam predstavlja visinu skoka.
+			 * Kada je 0, igrac je na ivici cevi, a kada je 1 igrac je u centru cevi
+			 */
+			var jumpHeight = Mathf.Sin(Mathf.PI * jumpFraction);
+			transform.position = Vector3.Lerp(jumpOrigin, jumpTarget, jumpHeight);
+		}
+		else
+		{
+			// Inace je skok zavrsen, krajnja tacka je ona sa koje smo skocili
+			transform.position = jumpOrigin;
+			isJumping = false;
+			isRotating = true;
+		}
+	}
+	
 	private void Rotate()
 	{
 		if (changeDirectionPressed)
 		{
 			rotatingRight = !rotatingRight;
-			bonusRotateSpeed /= 2;
 			changeDirectionPressed = false;
 		}
-		else
-			bonusRotateSpeed += Time.deltaTime * rotateSpeedIncrease;
 
-		// Limit bonus speed
-		bonusRotateSpeed = Mathf.Clamp(bonusRotateSpeed, 0f, maxBonusRotateSpeed);
-
-		var speed = rotateSpeed + bonusRotateSpeed;
-
+		// Rotacija igraca oko globalnog koordinatnog pocetka
 		if (rotatingRight)
-			transform.RotateAround(Vector3.zero, Vector3.forward, speed * Time.deltaTime);
+			transform.RotateAround(Vector3.zero, Vector3.forward, rotateSpeed * Time.deltaTime);
 		else
-			transform.RotateAround(Vector3.zero, Vector3.forward, -speed * Time.deltaTime);
+			transform.RotateAround(Vector3.zero, Vector3.forward, -rotateSpeed * Time.deltaTime);
 	}
 
-	public void Die()
+	public void TakeDamage(float damage)
 	{
-		var explosion = Instantiate(explosionObject);
-		explosion.transform.position = transform.position;
-
-		Destroy(explosion, 4f);
+		// Implementirati skidanje zivota	
 	}
-
 
 }

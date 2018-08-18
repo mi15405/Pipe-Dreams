@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4185170245380292}
   - component: {fileID: 114353541632170550}
-  - component: {fileID: 114030586010939190}
   - component: {fileID: 54408034743794356}
   m_Layer: 0
   m_Name: PickUp (2)
@@ -38,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4683415063341062}
   - component: {fileID: 114457880344117588}
-  - component: {fileID: 114340689197967398}
   - component: {fileID: 54086461341005862}
   m_Layer: 0
   m_Name: PickUp (5)
@@ -75,7 +73,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4556305618880192}
   - component: {fileID: 114960353656722088}
-  - component: {fileID: 114454952121900454}
   - component: {fileID: 54737858875693036}
   m_Layer: 0
   m_Name: PickUp
@@ -146,7 +143,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4552050299422052}
   - component: {fileID: 114918834032723496}
-  - component: {fileID: 114071559519809244}
   - component: {fileID: 54869991457166466}
   m_Layer: 0
   m_Name: PickUp (4)
@@ -202,7 +198,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4370406327644056}
   - component: {fileID: 114563438113024892}
-  - component: {fileID: 114487454795578856}
   - component: {fileID: 54353210063000188}
   m_Layer: 0
   m_Name: PickUp (3)
@@ -220,7 +215,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4288240305395968}
   - component: {fileID: 114922186289846666}
-  - component: {fileID: 114288435140966900}
   - component: {fileID: 54918684085370184}
   m_Layer: 0
   m_Name: PickUp (6)
@@ -257,7 +251,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4803645450212436}
   - component: {fileID: 114821622472414086}
-  - component: {fileID: 114734963311234200}
   - component: {fileID: 54962367465046324}
   m_Layer: 0
   m_Name: PickUp (1)
@@ -1145,58 +1138,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114030586010939190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1034841667878116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
---- !u!114 &114071559519809244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1456080040312622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
---- !u!114 &114288435140966900
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703890973201200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
---- !u!114 &114340689197967398
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1045936253771524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
 --- !u!114 &114353541632170550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1208,19 +1149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d8375595f18ca4ebe7fa0a9e5f435d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114454952121900454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1075679269365900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
 --- !u!114 &114457880344117588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1232,19 +1160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d8375595f18ca4ebe7fa0a9e5f435d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114487454795578856
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1621598117944738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
 --- !u!114 &114563438113024892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1256,19 +1171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d8375595f18ca4ebe7fa0a9e5f435d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114734963311234200
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1925831885993792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5805e74b014d3e4abcef262e6b54406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  hasRelativeSpeed: 1
 --- !u!114 &114821622472414086
 MonoBehaviour:
   m_ObjectHideFlags: 1
