@@ -54,6 +54,12 @@ public class PipeSegment : MonoBehaviour {
 		// Pozicija sa zadatim odstojanjem
 		spawnedObject.transform.position = position + new Vector3(0f, offset, 0f);
 
+		// Ugao kosine cevi
+		var angleDifference = Vector3.Angle(-Vector3.forward, pipeDirection);
+
+		// Lokalna rotacija oko X ose, koja ravna objekat sa ivicom cevi u slucaju kada je cev kosa
+		spawnedObject.transform.Rotate(new Vector3(angleDifference, 0f, 0f));
+
 		// Rotacija oko centra trenutnog poprecnog preseka
 		spawnedObject.transform.RotateAround(position, pipeDirection, angle);	
 	}
