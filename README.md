@@ -28,3 +28,5 @@ Player jumps to the center and back, but the rotation is included, so he doesn't
 in the opposite direction. This *line* of movement can be vertical or rotated around the center of pipe.
 
 # Naration
+
+neka glupost da palmica vidi da mi radi
